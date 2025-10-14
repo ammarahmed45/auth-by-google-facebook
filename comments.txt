@@ -1,0 +1,16 @@
+/*
+1))first i make in terminal "composer require laravel/socialite"
+2))going to ->"config/services.php" then add     'google' => [
+        'user-id' => env('google-user-id'),
+        'user-secret' => env('google-user-secret'),
+        'redirect' => env('google-redirect'),
+    ],
+    'facebook' => [
+        'user-id' => env('facebook-user-id'),
+        'user-secret' => env('facebook-user-secret'),
+        'redirect' => env('facebook-redirect'),
+    ],
+3))
+
+
+*/
