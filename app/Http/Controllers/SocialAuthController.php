@@ -13,7 +13,7 @@ class SocialAuthController extends Controller
 {
     public function redirectToProvider(Request $request, $provider)
     {
-        // ✅ تحقق من reCAPTCHA
+        //  تحقق من reCAPTCHA
         $request->validate([
             'g-recaptcha-response' => 'required',
         ]);
@@ -29,7 +29,7 @@ class SocialAuthController extends Controller
             return back()->with('error', 'Please verify that you are not a robot.');
         }
 
-        // ✅ لو التحقق نجح، كمل تسجيل الدخول بالسوشيال
+        //  لو التحقق نجح، كمل تسجيل الدخول بالسوشيال
         return Socialite::driver($provider)->redirect();
     }
 
