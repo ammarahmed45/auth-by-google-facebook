@@ -40,6 +40,9 @@
             </form>
 
             <hr class="my-4">
+            <div class="mb-3 mt-3 d-flex justify-content-center">
+                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+            </div>
 
             {{-- Social Login --}}
             <div class="text-center">
@@ -51,11 +54,13 @@
                     <i class="bi bi-facebook"></i> Login with Facebook
                 </a>
             </div>
+
         </div>
     </div>
 
     {{-- Bootstrap Icons --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </body>
 
