@@ -13,7 +13,7 @@ class SocialAuthController extends Controller
 {
     public function redirectToProvider(Request $request, $provider)
     {
-        //  تحقق من reCAPTCHA
+        // تحقق من وجود reCAPTCHA
         $request->validate([
             'g-recaptcha-response' => 'required',
         ]);
@@ -21,6 +21,7 @@ class SocialAuthController extends Controller
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => config('services.recaptcha.secret_key'),
             'response' => $request->input('g-recaptcha-response'),
+            'remoteip' => $request->ip(),
         ]);
 
         $googleResponse = $response->json();
@@ -29,9 +30,11 @@ class SocialAuthController extends Controller
             return back()->with('error', 'Please verify that you are not a robot.');
         }
 
-        //  لو التحقق نجح، كمل تسجيل الدخول بالسوشيال
+        // لو نجح، اعمل redirect للمزوّد
         return Socialite::driver($provider)->redirect();
     }
+
+
 
     public function handleProviderCallback($provider)
     {
@@ -67,6 +70,6 @@ class SocialAuthController extends Controller
         }
 
         Auth::login($user, true);
-        return redirect('/welcome');
+        return redirect('/payment');
     }
 }

@@ -40,20 +40,27 @@
             </form>
 
             <hr class="my-4">
-            <div class="mb-3 mt-3 d-flex justify-content-center">
+            <form method="POST" action="{{ route('social.redirect', ['provider' => 'google']) }}" class="mb-2">
+                @csrf
+                {{-- reCAPTCHA widget --}}
                 <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
-            </div>
 
-            {{-- Social Login --}}
-            <div class="text-center">
-                <p class="text-muted mb-3">Or sign in with</p>
-                <a href="{{ url('/auth/google/redirect') }}" class="btn btn-danger w-100 mb-2">
+                {{-- زر Google --}}
+                <button type="submit" class="btn btn-danger w-100 mt-3">
                     <i class="bi bi-google"></i> Login with Google
-                </a>
-                <a href="{{ url('/auth/facebook/redirect') }}" class="btn btn-primary w-100">
+                </button>
+            </form>
+
+            <form method="POST" action="{{ route('social.redirect', ['provider' => 'facebook']) }}">
+                @csrf
+                {{-- إذا عايز نفس reCAPTCHA مستخدم مرّة واحدة فقط، تقدر تضعها فوق وتستخدم JS لتمرير التوكن قبل الإرسال
+                --}}
+
+                <button type="submit" class="btn btn-primary w-100 mt-2">
                     <i class="bi bi-facebook"></i> Login with Facebook
-                </a>
-            </div>
+                </button>
+            </form>
+
 
         </div>
     </div>
