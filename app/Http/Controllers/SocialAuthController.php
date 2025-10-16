@@ -38,7 +38,8 @@ class SocialAuthController extends Controller
                 'provider_id' => $providerId,
             ]);
         } else {
-            // لو لقي مستخدم بالـ email لكن بدون تفاصيل provider نحدّثه
+
+            
             if (!$user->provider) {
                 $user->update([
                     'provider' => $provider,
