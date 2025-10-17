@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,3 +13,9 @@ Route::get('/payment', function () {
 Route::post('/auth/{provider}/redirect', [SocialAuthController::class, 'redirectToProvider'])->name('social.redirect');
 Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback']);
 Route::view('/login', 'login')->name('login');
+Route::get('/pay', [PaymentController::class, 'pay']);
+Route::get('/payment', function () {
+    return view('payment');
+});
+
+Route::post('/payment', [PaymentController::class, 'makePayment'])->name('make.payment');

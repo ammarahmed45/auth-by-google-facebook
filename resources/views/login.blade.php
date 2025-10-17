@@ -55,6 +55,8 @@
                 @csrf
                 {{-- إذا عايز نفس reCAPTCHA مستخدم مرّة واحدة فقط، تقدر تضعها فوق وتستخدم JS لتمرير التوكن قبل الإرسال
                 --}}
+                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+
 
                 <button type="submit" class="btn btn-primary w-100 mt-2">
                     <i class="bi bi-facebook"></i> Login with Facebook
